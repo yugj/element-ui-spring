@@ -3,7 +3,7 @@ package org.github.yugj.element.ui.spring.endpoint;
 import org.github.yugj.element.ui.spring.model.TestData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.List;
 public class TestEndpoint {
 
 
-    @GetMapping("/t/list")
+    @RequestMapping("/t/list")
     public ResponseEntity<List<TestData>> list() {
         List<TestData> data = new ArrayList<>();
         TestData t1 = new TestData("20200101","880-111","yugj");

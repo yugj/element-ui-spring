@@ -27,40 +27,29 @@
 </body>
 
 <script>
-    new Vue({
+    var vue = new Vue({
         el: "#app",
         data: function () {
             return {
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }]
+                tableData: []
             }
         },
         methods: {
-            handleSuccess: function (response, file, fileList) {
-                console.log(response);
-                if (response.objectId) {
-                    this.getFile(response.objectId);
-                } else {
-                    alert("文件上传失败，请根据console及server日志排查定位");
-                }
+            listData: function () {
+                this.$http.post('/t/list'
+                    , {'objectId': 'objectId', 'expireTime': 4746937022000}
+                    , {emulateJSON: true})
+                    .then(function (res) {
+                        console.log(res);
+                        this.tableData = res.data;
+                    }, function (res) {
+                        console.log(res);
+                    });
             }
         }
     });
+
+    vue.listData();
 
 </script>
 </html>
