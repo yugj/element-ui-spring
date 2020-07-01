@@ -1,0 +1,66 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>xxx</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="./css/element-ui.index.2.13.2.css">
+    <!-- 引入组件库 -->
+    <script src="./js/vue.2.6.11.js"></script>
+    <script src="./js/element-ui.index.2.13.2.js"></script>
+    <script src="./js/vue-resource.min.1.5.1.js"></script>
+
+    <link rel="icon" href="./img/icon.png" type="image/x-icon"/>
+</head>
+
+<body>
+<div id="app">
+<template>
+    <div class="block">
+        <el-table :data="tableData" style="width: 100%">
+            <el-table-column prop="date" label="日期" width="180"></el-table-column>
+            <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+            <el-table-column prop="address" label="地址"></el-table-column>
+        </el-table>
+    </div>
+</template>
+</div>
+</body>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: function () {
+            return {
+                tableData: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }]
+            }
+        },
+        methods: {
+            handleSuccess: function (response, file, fileList) {
+                console.log(response);
+                if (response.objectId) {
+                    this.getFile(response.objectId);
+                } else {
+                    alert("文件上传失败，请根据console及server日志排查定位");
+                }
+            }
+        }
+    });
+
+</script>
+</html>
